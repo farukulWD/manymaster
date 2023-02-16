@@ -24,7 +24,7 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
     const food = getInputValue("food");
     const rent = getInputValue("rent");
     const others = getInputValue("others");
-    if (isNaN(income)) {
+    if (isNaN(income) || isNaN(food) || isNaN(rent) || isNaN(others)){
         const warning = alert('please input number type value');
         return warning;
     }else if (income <= 0 || food <= 0 || rent <= 0 || others <= 0) {
