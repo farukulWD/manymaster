@@ -1,8 +1,9 @@
 function getInputValue(inputId) {
-        const inputElement = document.getElementById(inputId).value;
-        const inputNum = parseInt(inputElement);
-        return inputNum;
-    
+    const inputElement = document.getElementById(inputId).value;
+    const inputNum = parseInt(inputElement);
+     return inputNum;
+
+
 }
 
 function getInnerTextById(elementId) {
@@ -23,6 +24,13 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
     const food = getInputValue("food");
     const rent = getInputValue("rent");
     const others = getInputValue("others");
+    if (isNaN(income)) {
+        const warning = alert('please input number type value');
+        return warning;
+    }else if (income <= 0 || food <= 0 || rent <= 0 || others <= 0) {
+        const warning = alert('please input positive number');
+        return warning;
+    }
     // total expence
     const totalExpense = food + rent + others;
     // set expence
@@ -34,12 +42,25 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
 })
 
 // savving btn
-document.getElementById('savingbtn').addEventListener('click', function(){
+document.getElementById('savingbtn').addEventListener('click', function () {
     const balance = getInnerTextById("blance");
 
     const savingInput = getInputValue("saving-input");
+    // valitation 
+    if (isNaN(savingInput)) {
+        const warning = alert('please input number type value');
+        return warning;       
+    }else if (savingInput <= 0 ) {
+        const warning = alert('please input positive number');
+        return warning;
+    }
     const convertParsent = savingInput / 100;
     const savingAmount = balance * convertParsent;
+     // valitation 
+    if (balance < savingAmount) {
+        const warning = alert('your saving amout geter than your balance');
+        return warning;
+    }
     // set saving amount
     setInnerText("savingAmount", savingAmount);
     // Remaining Balance
