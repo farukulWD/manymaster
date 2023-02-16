@@ -33,6 +33,10 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
     }
     // total expence
     const totalExpense = food + rent + others;
+    if (income < totalExpense) {
+        const warning = alert('your expence is getarthan your income');
+        return warning;
+    }
     // set expence
     setInnerText('total-expence', totalExpense);
 
