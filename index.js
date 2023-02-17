@@ -1,5 +1,9 @@
 function getInputValue(inputId) {
     const inputElement = document.getElementById(inputId).value;
+    if (isNaN(inputElement)) {
+        const warning = alert('please input number type value');
+        return warning;
+    }
     const inputNum = parseInt(inputElement);
      return inputNum;
 
