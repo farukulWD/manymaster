@@ -5,7 +5,7 @@ function getInputValue(inputId) {
         return warning;
     }
     const inputNum = parseInt(inputElement);
-     return inputNum;
+    return inputNum;
 
 
 }
@@ -51,28 +51,26 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
 
 // savving btn
 document.getElementById('savingbtn').addEventListener('click', function () {
-    const balance = getInnerTextById("blance");
+    const incomeBalance = getInputValue("income");
+    const balance = getInnerTextById('blance');
+    const savingInputValue = getInputValue("saving-input");
+    
 
-    const savingInput = getInputValue("saving-input");
-    // valitation 
-    if (isNaN(savingInput)) {
+    const savingAmount = incomeBalance * (savingInputValue/100);
+    const remainingBalanece = balance - savingAmount;
+
+    if (savingAmount >= balance) {
+        const warning = alert('your expence is getarthan your income');
+        return warning;
+    }else if (isNaN(savingInputValue)) {
         const warning = alert('please input number type value');
-        return warning;       
-    }else if (savingInput <= 0 ) {
-        const warning = alert('please input positive number');
         return warning;
     }
-    const convertParsent = savingInput / 100;
-    const savingAmount = balance * convertParsent;
-     // valitation 
-    if (balance < savingAmount) {
-        const warning = alert('your saving amout geter than your balance');
-        return warning;
-    }
-    // set saving amount
-    setInnerText("savingAmount", savingAmount);
-    // Remaining Balance
-    const remainigBlance = balance - savingAmount;
-    setInnerText('remainigAmount', remainigBlance);
+
+    setInnerText('savingAmount', savingAmount);
+    setInnerText('remainigAmount', remainingBalanece);
+
+    console.log(savingAmount);
+    
 
 })
